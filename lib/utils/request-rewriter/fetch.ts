@@ -41,13 +41,13 @@ const wrappedFetch: typeof undici.fetch = async (input: RequestInfo, init?: Requ
     }
 
     let isRetry = false;
-    if (request.headers.get('x-retry')) {
+    if (request.headers.get('x-prefer-proxy')) {
         isRetry = true;
-        request.headers.delete('x-retry');
+        request.headers.delete('x-prefer-proxy');
     }
 
     // proxy
-    if (!options.dispatcher && proxy.dispatcher && (proxy.proxyObj.strategy !== 'on_retry' || isRetry)) {
+    if (!init?.dispatcher && proxy.dispatcher && (proxy.proxyObj.strategy !== 'on_retry' || isRetry)) {
         const proxyRegex = new RegExp(proxy.proxyObj.url_regex);
         let urlHandler;
         try {
