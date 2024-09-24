@@ -9,8 +9,52 @@ export const route: Route = {
     path: '/pornstar/:username/:language?/:sort?',
     categories: ['multimedia', 'popular'],
     view: ViewType.Videos,
-    example: '/pornhub/pornstar/june-liu',
-    parameters: { language: 'language, see below', username: 'username, part of the url e.g. `pornhub.com/pornstar/june-liu`', sort: 'sorting method, see below' },
+    example: '/pornhub/pornstar/june-liu/www/mr',
+    parameters: {
+        username: {
+            description: 'username, part of the url e.g. `pornhub.com/pornstar/june-liu`',
+        },
+        language: {
+            description: 'language',
+            options: [
+                { value: 'www', label: 'English' },
+                { value: 'de', label: 'Deutsch' },
+                { value: 'es', label: 'Español' },
+                { value: 'fr', label: 'Français' },
+                { value: 'it', label: 'Italiano' },
+                { value: 'ja', label: '日本語' },
+                { value: 'pt', label: 'Português' },
+                { value: 'pl', label: 'Polski' },
+                { value: 'rt', label: 'Русский' },
+                { value: 'nl', label: 'Dutch' },
+                { value: 'cs', label: 'Czech' },
+                { value: 'cn', label: '中文（简体）' },
+            ],
+            default: 'www',
+        },
+        sort: {
+            description: 'sorting method, leave empty for `Best`',
+            default: 'mr',
+            options: [
+                {
+                    label: 'Most Recent',
+                    value: 'mr',
+                },
+                {
+                    label: 'Most Viewed',
+                    value: 'mv',
+                },
+                {
+                    label: 'Top Rated',
+                    value: 'tr',
+                },
+                {
+                    label: 'Longest',
+                    value: 'lg',
+                },
+            ],
+        },
+    },
     features: {
         requireConfig: false,
         requirePuppeteer: false,
@@ -28,11 +72,6 @@ export const route: Route = {
     name: 'Pornstar',
     maintainers: ['I2IMk', 'queensferryme'],
     handler,
-    description: `**\`sort\`**
-
-  | Most Recent | Most Viewed | Top Rated | Longest | Best |
-  | ----------- | ----------- | --------- | ------- | ---- |
-  | mr          | mv          | tr        | lg      |      |`,
 };
 
 async function handler(ctx) {
