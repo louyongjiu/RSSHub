@@ -23,10 +23,10 @@ importers:
         version: 4.2.0
       '@hono/node-server':
         specifier: 1.13.7
-        version: 1.13.7(hono@4.6.14)
+        version: 1.13.7(hono@4.6.15)
       '@hono/zod-openapi':
         specifier: 0.18.3
-        version: 0.18.3(hono@4.6.14)(zod@3.24.1)
+        version: 0.18.3(hono@4.6.15)(zod@3.24.1)
       '@notionhq/client':
         specifier: 2.2.15
         version: 2.2.15
@@ -59,7 +59,7 @@ importers:
         version: 0.0.23
       '@scalar/hono-api-reference':
         specifier: 0.5.165
-        version: 0.5.165(hono@4.6.14)
+        version: 0.5.165(hono@4.6.15)
       '@sentry/node':
         specifier: 7.119.1
         version: 7.119.1
@@ -118,8 +118,8 @@ importers:
         specifier: 144.0.0
         version: 144.0.0
       hono:
-        specifier: 4.6.14
-        version: 4.6.14
+        specifier: 4.6.15
+        version: 4.6.15
       html-to-text:
         specifier: 9.0.5
         version: 9.0.5
@@ -413,8 +413,8 @@ importers:
         specifier: 1.15.1
         version: 1.15.1
       lint-staged:
-        specifier: 15.2.11
-        version: 15.2.11
+        specifier: 15.3.0
+        version: 15.3.0
       mockdate:
         specifier: 3.0.5
         version: 3.0.5
@@ -2402,6 +2402,10 @@ packages:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
+  chalk@5.4.1:
+    resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
   chance@1.1.12:
     resolution: {integrity: sha512-vVBIGQVnwtUG+SYe0ge+3MvF78cvSpuCOEUJr7sVEk2vSBuMW6OXNJjSzdtzrlxNUEaoqH2GBd5Y/+18BEB01Q==}
 
@@ -3414,8 +3418,8 @@ packages:
   hmacsha1@1.0.0:
     resolution: {integrity: sha512-4FP6J0oI8jqb6gLLl9tSwVdosWJ/AKSGJ+HwYf6Ixe4MUcEkst4uWzpVQrNOCin0fzTRQbXV8ePheU8WiiDYBw==}
 
-  hono@4.6.14:
-    resolution: {integrity: sha512-j4VkyUp2xazGJ8eCCLN1Vm/bxdvm/j5ZuU9AIjLu9vapn2M44p9L3Ktr9Vnb2RN2QtcR/wVjZVMlT5k7GJQgPw==}
+  hono@4.6.15:
+    resolution: {integrity: sha512-OiQwvAOAaI2JrABBH69z5rsctHDzFzIKJge0nYXgtzGJ0KftwLWcBXm1upJC23/omNRtnqM0gjRMbtXshPdqhQ==}
     engines: {node: '>=16.9.0'}
 
   hookable@5.5.3:
@@ -3869,8 +3873,8 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@15.2.11:
-    resolution: {integrity: sha512-Ev6ivCTYRTGs9ychvpVw35m/bcNDuBN+mnTeObCL5h+boS5WzBEC6LHI4I9F/++sZm1m+J2LEiy0gxL/R9TBqQ==}
+  lint-staged@15.3.0:
+    resolution: {integrity: sha512-vHFahytLoF2enJklgtOtCtIjZrKD/LoxlaUusd5nh7dWv/dkKQJY74ndFSzxCdv7g0ueGg1ORgTSt4Y9LPZn9A==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -6702,20 +6706,20 @@ snapshots:
     dependencies:
       levn: 0.4.1
 
-  '@hono/node-server@1.13.7(hono@4.6.14)':
+  '@hono/node-server@1.13.7(hono@4.6.15)':
     dependencies:
-      hono: 4.6.14
+      hono: 4.6.15
 
-  '@hono/zod-openapi@0.18.3(hono@4.6.14)(zod@3.24.1)':
+  '@hono/zod-openapi@0.18.3(hono@4.6.15)(zod@3.24.1)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 7.2.0(zod@3.24.1)
-      '@hono/zod-validator': 0.4.1(hono@4.6.14)(zod@3.24.1)
-      hono: 4.6.14
+      '@hono/zod-validator': 0.4.1(hono@4.6.15)(zod@3.24.1)
+      hono: 4.6.15
       zod: 3.24.1
 
-  '@hono/zod-validator@0.4.1(hono@4.6.14)(zod@3.24.1)':
+  '@hono/zod-validator@0.4.1(hono@4.6.15)(zod@3.24.1)':
     dependencies:
-      hono: 4.6.14
+      hono: 4.6.15
       zod: 3.24.1
 
   '@humanfs/core@0.19.1': {}
@@ -7139,10 +7143,10 @@ snapshots:
       '@rss3/api-core': 0.0.23
       '@rss3/api-utils': 0.0.23
 
-  '@scalar/hono-api-reference@0.5.165(hono@4.6.14)':
+  '@scalar/hono-api-reference@0.5.165(hono@4.6.15)':
     dependencies:
       '@scalar/types': 0.0.25
-      hono: 4.6.14
+      hono: 4.6.15
 
   '@scalar/openapi-types@0.1.5': {}
 
@@ -7860,6 +7864,8 @@ snapshots:
       supports-color: 7.2.0
 
   chalk@5.3.0: {}
+
+  chalk@5.4.1: {}
 
   chance@1.1.12: {}
 
@@ -9048,7 +9054,7 @@ snapshots:
 
   hmacsha1@1.0.0: {}
 
-  hono@4.6.14: {}
+  hono@4.6.15: {}
 
   hookable@5.5.3: {}
 
@@ -9538,9 +9544,9 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@15.2.11:
+  lint-staged@15.3.0:
     dependencies:
-      chalk: 5.3.0
+      chalk: 5.4.1
       commander: 12.1.0
       debug: 4.4.0
       execa: 8.0.1
@@ -10095,7 +10101,7 @@ snapshots:
 
   openapi3-ts@4.4.0:
     dependencies:
-      yaml: 2.6.0
+      yaml: 2.6.1
 
   optionator@0.8.3:
     dependencies:
