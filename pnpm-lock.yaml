@@ -23,10 +23,10 @@ importers:
         version: 4.2.0
       '@hono/node-server':
         specifier: 1.13.7
-        version: 1.13.7(hono@4.6.15)
+        version: 1.13.7(hono@4.6.16)
       '@hono/zod-openapi':
         specifier: 0.18.3
-        version: 0.18.3(hono@4.6.15)(zod@3.24.1)
+        version: 0.18.3(hono@4.6.16)(zod@3.24.1)
       '@notionhq/client':
         specifier: 2.2.15
         version: 2.2.15
@@ -59,7 +59,7 @@ importers:
         version: 0.0.23
       '@scalar/hono-api-reference':
         specifier: 0.5.165
-        version: 0.5.165(hono@4.6.15)
+        version: 0.5.165(hono@4.6.16)
       '@sentry/node':
         specifier: 7.119.1
         version: 7.119.1
@@ -118,8 +118,8 @@ importers:
         specifier: 144.0.0
         version: 144.0.0
       hono:
-        specifier: 4.6.15
-        version: 4.6.15
+        specifier: 4.6.16
+        version: 4.6.16
       html-to-text:
         specifier: 9.0.5
         version: 9.0.5
@@ -133,8 +133,8 @@ importers:
         specifier: 0.6.3
         version: 0.6.3
       imapflow:
-        specifier: 1.0.171
-        version: 1.0.171
+        specifier: 1.0.172
+        version: 1.0.172
       instagram-private-api:
         specifier: 1.46.1
         version: 1.46.1
@@ -169,11 +169,11 @@ importers:
         specifier: 2.2.3
         version: 2.2.3
       narou:
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: 1.1.0
+        version: 1.1.0
       notion-to-md:
-        specifier: 3.1.1
-        version: 3.1.1
+        specifier: 3.1.2
+        version: 3.1.2
       oauth-1.0a:
         specifier: 2.2.6
         version: 2.2.6
@@ -262,8 +262,8 @@ importers:
         specifier: 6.21.0
         version: 6.21.0
       uuid:
-        specifier: 11.0.3
-        version: 11.0.3
+        specifier: 11.0.4
+        version: 11.0.4
       winston:
         specifier: 3.17.0
         version: 3.17.0
@@ -2638,8 +2638,8 @@ packages:
     resolution: {integrity: sha512-ZYP5VBHshaDAiVZxjbRVcFJpc+4xGgT0bK3vzy1HLN8jTO975HEbuYzZJcHoQEY5K1a0z8YayJkyVETa08eNTg==}
     engines: {node: '>=18'}
 
-  date-fns@3.6.0:
-    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   dayjs@1.11.8:
     resolution: {integrity: sha512-LcgxzFoWMEPO7ggRv1Y2N31hUf2R0Vj7fuy/m+Bg1K8rr+KAs1AEy4y9jd5DXe8pbHgX+srkHNS7TH6Q6ZhYeQ==}
@@ -3418,8 +3418,8 @@ packages:
   hmacsha1@1.0.0:
     resolution: {integrity: sha512-4FP6J0oI8jqb6gLLl9tSwVdosWJ/AKSGJ+HwYf6Ixe4MUcEkst4uWzpVQrNOCin0fzTRQbXV8ePheU8WiiDYBw==}
 
-  hono@4.6.15:
-    resolution: {integrity: sha512-OiQwvAOAaI2JrABBH69z5rsctHDzFzIKJge0nYXgtzGJ0KftwLWcBXm1upJC23/omNRtnqM0gjRMbtXshPdqhQ==}
+  hono@4.6.16:
+    resolution: {integrity: sha512-iE6xOPwDYlfnZFwk6BfIMMIH4WZm3pPhz6rc1uJM/OPew0pjG5K6p8WTLaMBY1/szF/T0TaEjprMpwn16BA0NQ==}
     engines: {node: '>=16.9.0'}
 
   hookable@5.5.3:
@@ -3522,8 +3522,8 @@ packages:
     engines: {node: '>=6.9.0'}
     hasBin: true
 
-  imapflow@1.0.171:
-    resolution: {integrity: sha512-4H33FkLk1bDBdfSF0uacFFHuha83S1F7njhskh20vO1CweZ+jO65f3SD47ZcoE9HEQ5SqeaEwCkiQPBPkjcIhw==}
+  imapflow@1.0.172:
+    resolution: {integrity: sha512-hFIO5PDFkHAbUU+/GXdYVBZLks9wxtolciPw8S1idjl8sz6xlzGlSqBszMQ5IK5VUw0dfxlprFfw2amiTvbNuA==}
 
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
@@ -4229,8 +4229,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  narou@1.0.0:
-    resolution: {integrity: sha512-+rlk2kT6+Tdse8E2Z57xR7uLuEDjJ7EgZFRL7F7hMEPRCgU+KV/V2twg+3dcUy0OYHq79RLxuUzKv2kDKTsNRQ==}
+  narou@1.1.0:
+    resolution: {integrity: sha512-UwYk9x+5cidHwqiKiklEdsQy4tID0pn6HYYweah+7bamze2hDE7gnFdjaqRCrp2INzptdp3mCiauKV49trTVFg==}
     engines: {node: '>=16.0.0', pnpm: '>=8'}
 
   natural-compare@1.4.0:
@@ -4295,8 +4295,8 @@ packages:
     resolution: {integrity: sha512-IO9QvjUMWxPQQhs60oOu10CRkWCiZzSUkzbXGGV9pviYl1fXYcvkzQ5jV9z8Y6un8ARoVRl4EtC6v6jNqbaJ/w==}
     engines: {node: '>=14.16'}
 
-  notion-to-md@3.1.1:
-    resolution: {integrity: sha512-Zaa2P1B9Rx99bevFYTGuUMYbbfdHn2G1AZMsytYGDWIJjr6Ie1qp/8CorpwVUh1qrquES/V2PkEREqCuTu1zKA==}
+  notion-to-md@3.1.2:
+    resolution: {integrity: sha512-0ua8rrHeIGw5OmEw5yNCuHMJV3MhFJO21T6p6O4VAHl3bwXGjGYyANSnFm6IuoZsyr7PxQo7qQqCtOFrj+YRYg==}
     engines: {node: '>=12'}
 
   npm-run-path@5.3.0:
@@ -4513,8 +4513,8 @@ packages:
   pino-std-serializers@7.0.0:
     resolution: {integrity: sha512-e906FRY0+tV27iq4juKzSYPbUj2do2X2JX4EzSca1631EB2QJQUqGbDuERal7LCtOpxl6x3+nvo9NPZcmjkiFA==}
 
-  pino@9.5.0:
-    resolution: {integrity: sha512-xSEmD4pLnV54t0NOUN16yCl7RIB1c5UUOse5HSyEXtBp+FgFQyPeDutc+Q2ZO7/22vImV7VfEjH/1zV2QuqvYw==}
+  pino@9.6.0:
+    resolution: {integrity: sha512-i85pKRCt4qMjZ1+L7sy2Ag4t1atFcdbEt76+7iRJn1g2BvsnRMGu9p8pivl9fs63M2kF/A0OacFZhTub+m/qMg==}
     hasBin: true
 
   pluralize@8.0.0:
@@ -5442,8 +5442,8 @@ packages:
     resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
     engines: {node: '>= 4'}
 
-  uuid@11.0.3:
-    resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
+  uuid@11.0.4:
+    resolution: {integrity: sha512-IzL6VtTTYcAhA/oghbFJ1Dkmqev+FpQWnCBaKq/gUluLxliWvO8DPFWfIviRmYbtaavtSQe4WBL++rFjdcGWEg==}
     hasBin: true
 
   uuid@3.4.0:
@@ -6706,20 +6706,20 @@ snapshots:
     dependencies:
       levn: 0.4.1
 
-  '@hono/node-server@1.13.7(hono@4.6.15)':
+  '@hono/node-server@1.13.7(hono@4.6.16)':
     dependencies:
-      hono: 4.6.15
+      hono: 4.6.16
 
-  '@hono/zod-openapi@0.18.3(hono@4.6.15)(zod@3.24.1)':
+  '@hono/zod-openapi@0.18.3(hono@4.6.16)(zod@3.24.1)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 7.2.0(zod@3.24.1)
-      '@hono/zod-validator': 0.4.1(hono@4.6.15)(zod@3.24.1)
-      hono: 4.6.15
+      '@hono/zod-validator': 0.4.1(hono@4.6.16)(zod@3.24.1)
+      hono: 4.6.16
       zod: 3.24.1
 
-  '@hono/zod-validator@0.4.1(hono@4.6.15)(zod@3.24.1)':
+  '@hono/zod-validator@0.4.1(hono@4.6.16)(zod@3.24.1)':
     dependencies:
-      hono: 4.6.15
+      hono: 4.6.16
       zod: 3.24.1
 
   '@humanfs/core@0.19.1': {}
@@ -7143,10 +7143,10 @@ snapshots:
       '@rss3/api-core': 0.0.23
       '@rss3/api-utils': 0.0.23
 
-  '@scalar/hono-api-reference@0.5.165(hono@4.6.15)':
+  '@scalar/hono-api-reference@0.5.165(hono@4.6.16)':
     dependencies:
       '@scalar/types': 0.0.25
-      hono: 4.6.15
+      hono: 4.6.16
 
   '@scalar/openapi-types@0.1.5': {}
 
@@ -8117,7 +8117,7 @@ snapshots:
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.0.0
 
-  date-fns@3.6.0: {}
+  date-fns@4.1.0: {}
 
   dayjs@1.11.8: {}
 
@@ -9054,7 +9054,7 @@ snapshots:
 
   hmacsha1@1.0.0: {}
 
-  hono@4.6.15: {}
+  hono@4.6.16: {}
 
   hookable@5.5.3: {}
 
@@ -9176,7 +9176,7 @@ snapshots:
 
   image-size@0.7.5: {}
 
-  imapflow@1.0.171:
+  imapflow@1.0.172:
     dependencies:
       encoding-japanese: 2.2.0
       iconv-lite: 0.6.3
@@ -9185,7 +9185,7 @@ snapshots:
       libqp: 2.1.1
       mailsplit: 5.4.2
       nodemailer: 6.9.16
-      pino: 9.5.0
+      pino: 9.6.0
       socks: 2.8.3
 
   immediate@3.0.6: {}
@@ -9977,9 +9977,9 @@ snapshots:
 
   nanoid@3.3.8: {}
 
-  narou@1.0.0:
+  narou@1.1.0:
     dependencies:
-      date-fns: 3.6.0
+      date-fns: 4.1.0
 
   natural-compare@1.4.0: {}
 
@@ -10034,7 +10034,7 @@ snapshots:
 
   normalize-url@8.0.1: {}
 
-  notion-to-md@3.1.1:
+  notion-to-md@3.1.2:
     dependencies:
       markdown-table: 2.0.0
       node-fetch: 2.7.0
@@ -10265,7 +10265,7 @@ snapshots:
 
   pino-std-serializers@7.0.0: {}
 
-  pino@9.5.0:
+  pino@9.6.0:
     dependencies:
       atomic-sleep: 1.0.0
       fast-redact: 3.5.0
@@ -11234,7 +11234,7 @@ snapshots:
 
   utility-types@3.11.0: {}
 
-  uuid@11.0.3: {}
+  uuid@11.0.4: {}
 
   uuid@3.4.0: {}
 
