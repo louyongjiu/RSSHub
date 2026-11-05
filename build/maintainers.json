@@ -980,6 +980,9 @@
   "/zyw/hot/:site?": [
     "nczitzk"
   ],
+  "/4chan/:board/thread/:threadId/:routeParams?": [
+    "Hash6232"
+  ],
   "/4chan/:board/catalog/:routeParams?": [
     "heisenshark"
   ],
@@ -1050,6 +1053,16 @@
   ],
   "/kuaishou/profile/:principalId": [
     "GuoChen-thlg"
+  ],
+  "/mi/golden": [
+    "nczitzk"
+  ],
+  "/mi/crowdfunding": [
+    "DIYgod",
+    "nuomi1"
+  ],
+  "/mi/newproducts": [
+    "nuomi1"
   ],
   "/mixcloud/:username/:type?": [
     "Misaka13514"
@@ -1418,16 +1431,6 @@
   "/mercari/search/:query": [
     "yana9i",
     "Tsuyumi25"
-  ],
-  "/mi/golden": [
-    "nczitzk"
-  ],
-  "/mi/crowdfunding": [
-    "DIYgod",
-    "nuomi1"
-  ],
-  "/mi/newproducts": [
-    "nuomi1"
   ],
   "/missevan/drama/:id": [
     "FlashWingShadow"
@@ -2038,6 +2041,15 @@
   ],
   "/utgd/topic/:topic?": [
     "nczitzk"
+  ],
+  "/viva-la-vita/featured": [
+    "0zheermao0"
+  ],
+  "/viva-la-vita/hot": [
+    "0zheermao0"
+  ],
+  "/viva-la-vita/latest": [
+    "0zheermao0"
   ],
   "/wellcee/rent/:city/:district?": [
     "TonyRL"
@@ -3100,6 +3112,9 @@
   ],
   "/ce/district/:category?": [
     "cscnk52"
+  ],
+  "/ce/paper/:page?": [
+    "zhangsan-xyz"
   ],
   "/cebbank/quotation/all": [
     "linbuxiao"
@@ -4624,6 +4639,9 @@
   ],
   "/gmcmonline/chinacustoms": [
     "nczitzk"
+  ],
+  "/gmrb/paper/:page?": [
+    "zhangsan-xyz"
   ],
   "/gmu/news/:type?": [
     "FrankFahey"
@@ -6541,6 +6559,12 @@
     "gylidian",
     "nczitzk"
   ],
+  "/nvidia/developer/:language?": [
+    "ljh12138164"
+  ],
+  "/nvidia/newsroom": [
+    "ljh12138164"
+  ],
   "/nwafu/:type?": [
     "karinido"
   ],
@@ -7730,11 +7754,11 @@
     "imbytecat",
     "simonsmh"
   ],
-  "/shopback/cashback/:store/:market?": [
-    "DIYgod"
-  ],
   "/shopback/:store": [
     "nczitzk"
+  ],
+  "/shopback/cashback/:store/:market?": [
+    "DIYgod"
   ],
   "/shopify/apps/:handle/reviews/:page?": [
     "PrintNow"
@@ -9718,6 +9742,12 @@
   ],
   "/aljazeera/:language?/tag/:id": [
     "nczitzk"
+  ],
+  "/amd/newsroom/:category?/:language?": [
+    "ljh12138164"
+  ],
+  "/amd/press-releases/:language?": [
+    "ljh12138164"
   ],
   "/apnews/sitemap/:route": [
     "zoenglinghou",
