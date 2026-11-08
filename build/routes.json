@@ -229,7 +229,7 @@
         "categories": [
           "multimedia"
         ],
-        "example": "/163/music/user/playrecords/45441555/1",
+        "example": "/163/music/user/playrecords/45441555/0",
         "parameters": {
           "uid": "用户 uid, 可在用户主页 URL 中找到",
           "type": "排行榜类型，0所有时间(默认)，1最近一周"
@@ -17051,7 +17051,7 @@
         "categories": [
           "shopping"
         ],
-        "example": "/mymusicsheet/user/sheets/HalcyonMusic/USD/1",
+        "example": "/mymusicsheet/user/sheets/HalcyonMusic/USD",
         "parameters": {
           "username": "Username, can be found in the URL",
           "iso": "ISO 4217 currency code for displaying prices, defaults to `USD`",
@@ -83028,6 +83028,61 @@
     "name": "自由時報",
     "url": "ltn.com.tw",
     "lang": "zh-TW"
+  },
+  "lvshunmuseum": {
+    "routes": {
+      "/exhibition/:type?": {
+        "path": "/exhibition/:type?",
+        "categories": [
+          "travel"
+        ],
+        "example": "/lvshunmuseum/exhibition/temporary",
+        "parameters": {
+          "type": "Exhibition type, supported values: all（陈列展览）、basic（基本陈列）、temporary（临时陈列）、export（输出陈列）、import（引进陈列）、exchange（展览交流）. Default: all（all exhibitions）."
+        },
+        "name": "Exhibitions",
+        "maintainers": [
+          "magazian"
+        ],
+        "radar": [
+          {
+            "source": [
+              "lvshunmuseum.cn/Exhibition/"
+            ],
+            "target": "/exhibition"
+          }
+        ],
+        "location": "exhibition.tsx",
+        "module": "() => import('@/routes/lvshunmuseum/exhibition.tsx')"
+      },
+      "/news": {
+        "path": "/news",
+        "categories": [
+          "travel"
+        ],
+        "example": "/lvshunmuseum/news",
+        "name": "News",
+        "maintainers": [
+          "magazian"
+        ],
+        "radar": [
+          {
+            "source": [
+              "lvshunmuseum.cn/news/"
+            ],
+            "target": "/news"
+          }
+        ],
+        "location": "news.ts",
+        "module": "() => import('@/routes/lvshunmuseum/news.ts')"
+      }
+    },
+    "apiRoutes": {},
+    "name": "Lvshun Museum",
+    "url": "lvshunmuseum.cn",
+    "zh": {
+      "name": "旅顺博物馆"
+    }
   },
   "lvv2": {
     "routes": {
