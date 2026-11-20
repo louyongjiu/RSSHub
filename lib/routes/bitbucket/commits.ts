@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import { config } from '@/config';
 import type { Route } from '@/types';
 import got from '@/utils/got';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
 export const route: Route = {
     path: '/commits/:workspace/:repo_slug',
@@ -42,7 +42,7 @@ async function handler(ctx) {
     }
     const response = await got({
         method: 'get',
-        url: `https://api.bitbucket.org/2.0/repositories/${workspace}/${repo_slug}/commits/`,
+        url: `https://api.bitbucket.org/2.0/repositories/${encodeURIComponent(workspace)}/${encodeURIComponent(repo_slug)}/commits/`,
         searchParams: queryString.stringify({
             sort: '-target.date',
         }),

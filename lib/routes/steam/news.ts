@@ -6,8 +6,8 @@ import type { Context } from 'hono';
 
 import type { Data, DataItem, Route } from '@/types';
 import got from '@/utils/got';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 export const route: Route = {
     path: '/news/:appid/:language?',
@@ -256,6 +256,7 @@ const customPreset: PresetFactory = presetHTML5.extend((tags) => ({
             title: 'YouTube video player',
             frameborder: '0',
             allowFullScreen: '1',
+            referrerpolicy: 'strict-origin-when-cross-origin',
         },
     }),
     video: (node, { render }) => ({

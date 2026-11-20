@@ -4,9 +4,9 @@ import pMap from 'p-map';
 import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
 import parser from '@/utils/rss-parser';
+import { parseDate } from '@/utils/time';
 
 const rootUrl = 'https://nvidianews.nvidia.com';
 
@@ -56,7 +56,7 @@ export const route: Route = {
 async function fetchArticle(link: string) {
     const response = await ofetch(link, { responseType: 'text' });
     const $ = load(response);
-    const article = $('.article-body, .entry-content').first();
+    const article = $('.article-body, .entry-content, .full-width-layout__sections').first();
     if (!article.length) {
         throw new Error(`NVIDIA article content not found: ${link}`);
     }
@@ -65,7 +65,7 @@ async function fetchArticle(link: string) {
     return {
         description: article.html()!,
         image: $('meta[property="og:image"]').attr('content'),
-        category: $('.nvidia-category-item a, .nvidia-tag-item a')
+        category: $('.nvidia-category-item a, .nvidia-tag-item a, .full-width-layout__terms a')
             .toArray()
             .map((element) => $(element).text()),
     };

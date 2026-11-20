@@ -3,7 +3,7 @@ import { load } from 'cheerio';
 import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
 export const route: Route = {
     path: '/chrono',
@@ -42,7 +42,8 @@ export const route: Route = {
                     category: [$item.find('.feed-card-badge').text().trim()],
                     image: $item.find('img').attr('src'),
                 };
-            });
+            })
+            .filter((item, index, items) => items.findIndex((candidate) => candidate.link === item.link) === index);
 
         // The list only shows relative times, so read the date from each page.
         const items = await Promise.all(

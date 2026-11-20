@@ -94,6 +94,13 @@ describe('RSS view', () => {
         expect(html).toContain('<category>News</category>');
     });
 
+    it.each([3723, 0])('renders the itunes duration %s in seconds', (duration) => {
+        const html = renderToString(<RSS data={{ title: 'Podcast', item: [{ title: 'Episode', itunes_duration: duration }] }} />);
+
+        expect(html).toContain('xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"');
+        expect(html).toContain(`<itunes:duration>${duration}</itunes:duration>`);
+    });
+
     it('uses the first attachment when no explicit enclosure is provided', () => {
         const html = renderToString(
             <RSS
@@ -174,5 +181,33 @@ describe('RSS view', () => {
         );
 
         expect(html).toMatch(/^<probe><\/head><rss/);
+    });
+
+    it('renders only primitive media values as attributes', () => {
+        const html = renderToString(
+            <RSS
+                data={{
+                    title: 'Feed',
+                    item: [
+                        {
+                            title: 'Item',
+                            link: 'https://example.com/item',
+                            media: {
+                                content: {
+                                    url: 'https://example.com/a.jpg',
+                                    width: 250,
+                                    children: 'child',
+                                    dangerouslySetInnerHTML: { __html: '<injected/>' },
+                                } as any,
+                            },
+                        },
+                    ],
+                }}
+            />
+        );
+
+        expect(html).toContain('<media:content url="https://example.com/a.jpg" width="250"></media:content>');
+        expect(html).not.toContain('<injected/>');
+        expect(html).not.toContain('child');
     });
 });

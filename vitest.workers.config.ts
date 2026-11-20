@@ -56,7 +56,7 @@ export default defineConfig({
         cloudflareTest({
             miniflare: {
                 compatibilityDate: '2026-09-01',
-                compatibilityFlags: ['global_fetch_strictly_public'],
+                compatibilityFlags: ['global_fetch_strictly_public', 'temporal'],
                 kvNamespaces: ['CACHE'],
                 modulesRules: [{ type: 'CompiledWasm', include: ['**/*.wasm'] }],
             },
@@ -68,7 +68,6 @@ export default defineConfig({
         alias: {
             'dotenv/config': path.resolve('./lib/shims/dotenv-config.ts'),
             jsdom: path.resolve('./lib/shims/jsdom.ts'),
-            vm2: path.resolve('./lib/shims/vm2.ts'),
         },
     },
     test: {

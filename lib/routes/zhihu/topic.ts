@@ -1,6 +1,6 @@
 import type { Route } from '@/types';
 import cache from '@/utils/cache';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
 import { generateData } from './pin/utils';
 import { processImage, withZhihuClient } from './utils';
@@ -14,10 +14,10 @@ export const route: Route = {
         requireConfig: [
             {
                 name: 'ZHIHU_COOKIES',
-                description: 'A complete d_c0 and __zse_ck cookie pair skips session initialization. Otherwise Workers use a Playwright browser session; Docker and Vercel generate credentials with JSDOM.',
+                description: 'A complete d_c0 and __zse_ck cookie pair skips session initialization. Otherwise a Playwright browser session is required.',
             },
         ],
-        requirePuppeteer: false,
+        requirePuppeteer: true,
         antiCrawler: true,
         supportBT: false,
         supportPodcast: false,
@@ -52,7 +52,7 @@ function handler(ctx) {
             let title = '';
             let description: string;
             let link = '';
-            let pubDate: Date;
+            let pubDate: Temporal.Instant | undefined;
             let author = '';
 
             switch (type) {

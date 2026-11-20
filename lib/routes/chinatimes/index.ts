@@ -4,10 +4,10 @@ import type { DataItem, Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import logger from '@/utils/logger';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import playwright from '@/utils/playwright';
 import { getRouteLimit } from '@/utils/route-limit';
-import timezone from '@/utils/timezone';
+import { parseDate } from '@/utils/time';
+import { isOnSite } from '@/utils/valid-host';
 
 export const route: Route = {
     path: '/:category?',
@@ -54,9 +54,9 @@ async function handler(ctx) {
             const a = $item.find('.title a');
             return {
                 title: a.text(),
-                link: `${baseUrl}${a.attr('href')}?chdtv`,
+                link: `${new URL(a.attr('href')!, baseUrl).href}?chdtv`,
                 guid: `${baseUrl}${a.attr('href')}`,
-                pubDate: timezone(parseDate($item.find('time').attr('datetime')!), 8),
+                pubDate: parseDate($item.find('time').attr('datetime')!, 8),
                 category: $item
                     .find('.category a')
                     .toArray()
@@ -65,8 +65,12 @@ async function handler(ctx) {
         });
 
     const items = await Promise.all(
-        list.map((item) =>
-            cache.tryGet(item.link!, async () => {
+        list.map((item) => {
+            // only follow links on the site itself
+            if (!isOnSite(item.link, 'chinatimes.com')) {
+                return item;
+            }
+            return cache.tryGet(item.link!, async () => {
                 const page = await context.newPage();
                 await page.route('**/*', (route) => {
                     const request = route.request();
@@ -95,8 +99,8 @@ async function handler(ctx) {
                 item.description = $('.main-figure').html()! + $('.article-body').html()!;
 
                 return item;
-            })
-        )
+            });
+        })
     );
 
     await context.close();
