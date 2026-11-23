@@ -6,8 +6,7 @@ import type { Data, DataItem, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
-import timezone from '@/utils/timezone';
+import { parseDate } from '@/utils/time';
 
 import { apiBaseUrl, getLimit } from './utils';
 
@@ -27,7 +26,7 @@ interface EventResponse {
     };
 }
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'latest' } = ctx.req.param();
     const limit = getLimit(ctx.req.query('limit'), 30);
     const baseUrl = 'https://www.oschina.net';
@@ -58,8 +57,8 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 return {
                     title: event.topic,
                     description: event.description,
-                    pubDate: timezone(parseDate(event.createTime), 8),
-                    updated: timezone(parseDate(event.updateTime), 8),
+                    pubDate: parseDate(event.createTime, 8),
+                    updated: parseDate(event.updateTime, 8),
                     image: event.imgUrl,
                     category: [event.province + event.city].filter(Boolean),
                     author: [{ name: event.userVo.name, url: event.userVo.spaceUrl, avatar: event.userVo.portraitUrl }],

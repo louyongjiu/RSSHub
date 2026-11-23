@@ -2,7 +2,7 @@ import type { Context } from 'hono';
 
 import type { Route } from '@/types';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
 import { comic, indexComic, indexInterview, interview, novel, uncategorized } from './json2html';
 
@@ -42,8 +42,7 @@ function parsePubDate(value?: string) {
     if (!value) {
         return;
     }
-    const date = parseDate(/z|[+-]\d{2}:?\d{2}$/i.test(value) ? value : `${value}+09:00`);
-    return Number.isFinite(date.getTime()) ? date : undefined;
+    return parseDate(/z|[+-]\d{2}:?\d{2}$/i.test(value) ? value : `${value}+09:00`);
 }
 async function handler(ctx: Context) {
     const { language, type } = ctx.req.param();
@@ -51,7 +50,7 @@ async function handler(ctx: Context) {
         throw new Error('Invalid language');
     }
     const baseUrl = language === 'ja' ? 'https://touhougarakuta.com' : `https://${language}.touhougarakuta.com`;
-    const response = await ofetch(`${baseUrl}/page-data/${type === 'interviews' ? 'tags/interviews' : type}/page-data.json`);
+    const response = await ofetch(`${baseUrl}/page-data/${type === 'interviews' ? 'tags/interviews' : type}/page-data.json`, { maxResponseSize: 64 * 1024 * 1024 }); // the news page lists every article with its full text, 23 MB now
     return {
         title: `東方我楽多叢誌 - ${type}`,
         link: `${baseUrl}/${type === 'index' ? '' : type}`,

@@ -9,8 +9,8 @@ import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 type DescriptionImage = {
     src?: string;
@@ -31,7 +31,7 @@ const renderDescription = ({ images, description }: { images?: DescriptionImage[
         </>
     );
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const limit = getRouteLimit(ctx, 50);
 
     const baseUrl = 'https://augmentcode.com';

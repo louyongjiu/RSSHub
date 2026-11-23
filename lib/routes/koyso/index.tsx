@@ -10,8 +10,8 @@ import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 const categoryPaths = {
     '0': '',
@@ -50,7 +50,7 @@ const renderDescription = (images?: DescriptionImage[]) =>
         </>
     );
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { category = '0', sort = 'latest' } = ctx.req.param();
     const limit = getRouteLimit(ctx, 30);
     const candidateLimit = ctx.req.query('sorted') === 'false' ? limit : Math.max(30, limit);

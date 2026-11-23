@@ -4,9 +4,9 @@ import type { Context } from 'hono';
 import type { Data, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { category } = ctx.req.param();
     const baseUrl = 'https://lancedb.com';
     const url = category ? `${baseUrl}/blog/category/${encodeURIComponent(category)}` : `${baseUrl}/blog`;
@@ -35,7 +35,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 title,
                 link,
                 description: $el.find('.blog_item-description').text(),
-                pubDate: dateStr ? parseDate(`${dateStr} GMT`) : undefined,
+                pubDate: dateStr ? parseDate(dateStr, 'MMMM D, YYYY') : undefined,
                 author: $el
                     .find('.blog-item-author')
                     .toArray()

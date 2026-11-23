@@ -8,8 +8,8 @@ import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 interface ArticleDates {
     '@type'?: string;
@@ -34,7 +34,7 @@ const getArticleDates = ($: CheerioAPI) => {
     }
 };
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'daily-news' } = ctx.req.param();
     const detailLimit = getRouteLimit(ctx);
     const limit = ctx.req.query('sorted') === 'false' && detailLimit !== undefined ? detailLimit : Math.max(30, getRouteLimit(ctx, 30));
@@ -59,7 +59,8 @@ export const handler = async (ctx: Context): Promise<Data> => {
             };
 
             return processedItem;
-        });
+        })
+        .filter((item, index, items) => items.findIndex((candidate) => candidate.link === item.link) === index);
 
     items = await pMap(
         items,

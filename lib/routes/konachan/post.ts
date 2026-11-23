@@ -4,7 +4,7 @@ import InvalidParameterError from '@/errors/types/invalid-parameter';
 import type { Route } from '@/types';
 import { ViewType } from '@/types';
 import got from '@/utils/got';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
 export const route: Route = {
     path: '/post/popular_recent/:period?',
@@ -35,7 +35,7 @@ export const route: Route = {
     },
 };
 
-export async function handler(ctx) {
+async function handler(ctx) {
     const { period = '1d' } = ctx.req.param();
     const titles = {
         '1d': 'Last 24 hours',

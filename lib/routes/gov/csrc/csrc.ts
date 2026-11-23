@@ -3,8 +3,8 @@ import { load } from 'cheerio';
 import InvalidParameterError from '@/errors/types/invalid-parameter';
 import type { Route } from '@/types';
 import got from '@/utils/got';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 const enclosureTypes = {
     pdf: 'application/pdf',
@@ -23,7 +23,7 @@ function getEnclosureType(filePath: string) {
     return extension && isEnclosureExtension(extension) ? enclosureTypes[extension] : 'application/octet-stream';
 }
 
-export const handler = async (ctx) => {
+const handler = async (ctx) => {
     const { id = 'c101972' } = ctx.req.param();
     const limit = getRouteLimit(ctx, 50);
 
@@ -64,7 +64,7 @@ export const handler = async (ctx) => {
         return {
             title,
             description,
-            pubDate: date && !Number.isNaN(date.getTime()) ? date : undefined,
+            pubDate: date,
             link: item.url,
             category: [item.channelName],
             content: {

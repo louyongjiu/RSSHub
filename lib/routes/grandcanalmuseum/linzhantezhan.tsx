@@ -1,11 +1,12 @@
 import { load } from 'cheerio';
+import { raw } from 'hono/html';
 import { renderToString } from 'hono/jsx/dom/server';
 import pMap from 'p-map';
 
 import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDateRange } from '@/utils/parse-date-range';
+import { parseDateRange } from '@/utils/time';
 
 import { namespace } from './namespace';
 
@@ -70,7 +71,7 @@ export const route: Route = {
                             <img src={item.imgUrl} />
                             <br />
                             {articleContent ? (
-                                <div dangerouslySetInnerHTML={{ __html: articleContent }} />
+                                <div>{raw(articleContent)}</div>
                             ) : (
                                 <>
                                     <p>

@@ -8,9 +8,9 @@ import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
 import parser from '@/utils/rss-parser';
+import { compareDates, parseDate } from '@/utils/time';
 import { isValidHost } from '@/utils/valid-host';
 
 import { renderDescription } from './templates/description';
@@ -28,7 +28,7 @@ const getUpdatedDate = ($: CheerioAPI) => {
     }
 };
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { lang = 'en' } = ctx.req.param();
     if (!isValidHost(lang)) {
         throw new InvalidParameterError('Invalid lang');
@@ -49,7 +49,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         .toArray()
         .map((el) => {
             const $el: Cheerio<Element> = $(el).parent().parent();
-            const linkUrl = $el.find('a[href]').attr('href');
+            const linkUrl = $el.find('a[data-dui-component="Button"]').attr('href');
             const link = linkUrl ? new URL(linkUrl, baseUrl).href : undefined;
             const feedItem = feedItems.get(link);
 
@@ -92,7 +92,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
             return processedItem;
         });
-    const orderedItems = ctx.req.query('sorted') === 'false' ? items : items.toSorted((a, b) => parseDate(b.pubDate ?? 0).getTime() - parseDate(a.pubDate ?? 0).getTime());
+    const orderedItems = ctx.req.query('sorted') === 'false' ? items : items.toSorted((a, b) => compareDates(b.pubDate, a.pubDate));
     items = orderedItems.slice(0, limit);
 
     items = await Promise.all(

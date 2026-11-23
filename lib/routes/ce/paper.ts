@@ -1,13 +1,13 @@
-import { type Cheerio, type CheerioAPI, load } from 'cheerio';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
 import pMap from 'p-map';
 
 import InvalidParameterError from '@/errors/types/invalid-parameter';
 import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
-import timezone from '@/utils/timezone';
+import { parseDateStrict } from '@/utils/time';
 
 const rootUrl = 'http://paper.ce.cn/pc/layout';
 const layoutIndexUrl = `${rootUrl}/index.html`;
@@ -84,7 +84,7 @@ const getArticleLinks = ($: CheerioAPI, baseUrl: string, categoryName?: string):
         });
 };
 
-const getArticleDetails = async (article: ArticleLink, pubDate?: Date): Promise<DataItem> => {
+const getArticleDetails = async (article: ArticleLink, pubDate?: Temporal.Instant): Promise<DataItem> => {
     try {
         const details = await cache.tryGet<ArticleDetails>(`ce:paper:${article.link}`, async () => {
             const page = await getPage(article.link);
@@ -161,9 +161,9 @@ const getArticleDetails = async (article: ArticleLink, pubDate?: Date): Promise<
 };
 
 const parseEditionDate = (firstNodeUrl: string) => {
-    const dateMatch = firstNodeUrl.match(/\/(\d{4})[-/]?(\d{2})[-/]?(\d{2})\//);
+    const dateMatch = /\/(\d{4})[-/]?(\d{2})[-/]?(\d{2})\//.exec(firstNodeUrl);
     const dateString = dateMatch ? `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}` : undefined;
-    const editionDate = dateString ? timezone(parseDate(dateString, 'YYYY-MM-DD', true), 8) : undefined;
+    const editionDate = dateString ? parseDateStrict(dateString, 'YYYY-MM-DD', 8) : undefined;
     return { dateString, editionDate };
 };
 

@@ -8,8 +8,8 @@ import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 const getResolution = (text: string): number => {
     const resolutions = text
@@ -42,7 +42,7 @@ const getBestMagnet = ($: CheerioAPI): Cheerio<Element> => {
     return best ? $(best) : magnets;
 };
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'dy' } = ctx.req.param();
     const limit = getRouteLimit(ctx, 25);
 

@@ -1,11 +1,12 @@
-import { type CheerioAPI, load } from 'cheerio';
+import type { CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
 import type { Context } from 'hono';
 
 import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 function parseGmtDate(value: number | string | undefined) {
     if (value === undefined || value === '') {
@@ -13,7 +14,7 @@ function parseGmtDate(value: number | string | undefined) {
     }
     return parseDate(typeof value === 'string' && !/(?:Z|[+-]\d{2}:?\d{2})$/i.test(value) ? `${value}Z` : value);
 }
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const limit = getRouteLimit(ctx, 10);
     const apiSlug = 'wp-json/wp/v2';
     const baseUrl = 'https://www.trendforce.com';

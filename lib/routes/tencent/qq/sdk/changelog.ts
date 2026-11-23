@@ -1,10 +1,12 @@
-import { type Cheerio, type CheerioAPI, load } from 'cheerio';
-import { type AnyNode, cloneNode, Document } from 'domhandler';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { AnyNode } from 'domhandler';
+import { cloneNode, Document } from 'domhandler';
 
 import InvalidParameterError from '@/errors/types/invalid-parameter';
 import type { Route } from '@/types';
 import got from '@/utils/got';
-import { parseDateInTimezone } from '@/utils/parse-date-in-timezone';
+import { parseDate } from '@/utils/time';
 
 const restoreReleaseSiblings = ($: CheerioAPI) => {
     // Unclosed list items on the source page can contain later release headings.
@@ -82,7 +84,7 @@ async function handler(ctx) {
             title: sectionTitle,
             link: anchor ? `${link}#${anchor}` : link,
             guid: `${platform}:${sectionTitle}`,
-            pubDate: publishedAt ? parseDateInTimezone(publishedAt, 8) : undefined,
+            pubDate: publishedAt ? parseDate(publishedAt, 8) : undefined,
             description: $heading
                 .nextUntil('p:has(strong)')
                 .toArray()

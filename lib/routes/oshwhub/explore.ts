@@ -1,14 +1,14 @@
 import type { CheerioAPI } from 'cheerio';
 import { load } from 'cheerio';
 import type { Context } from 'hono';
-import MarkdownIt from 'markdown-it';
 import pMap from 'p-map';
 
 import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
+import MarkdownIt from '@/utils/markdown-it';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
 import { renderDescription } from './templates/description';
 
@@ -46,7 +46,7 @@ const md = MarkdownIt({
     linkify: true,
 });
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { type = 'new', origin = 'all', projectTag } = ctx.req.param();
     const requestedLimit = Number(ctx.req.query('limit') ?? 15);
     const limit = Number.isFinite(requestedLimit) && requestedLimit >= 1 ? Math.floor(requestedLimit) : 15;
@@ -146,7 +146,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 const origin: string | undefined = originOptions.find((opt) => opt.value === result.origin)?.label ?? undefined;
                 const tags: string[] = findNamesByUuids(projectTagsData, result.project_tags ?? []);
 
-                const categories: string[] = [...new Set([...(item.category ?? []), origin ?? undefined, ...tags, result.license].filter((value): value is string => Boolean(value)))];
+                const categories: string[] = [...new Set([...[item.category ?? []].flat(), origin ?? undefined, ...tags, result.license].filter((value): value is string => Boolean(value)))];
                 const authors: DataItem['author'] = new Map(
                     [result.owner, result.creator, ...result.members].map((author) => {
                         const item = {

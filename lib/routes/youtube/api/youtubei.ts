@@ -1,10 +1,11 @@
 import { escapeAttribute, escapeText } from 'entities';
-import { type Helpers, Innertube, YTNodes } from 'youtubei.js';
+import type { Helpers } from 'youtubei.js';
+import { Innertube, YTNodes } from 'youtubei.js';
 
 import { config } from '@/config';
 import type { Data, DataItem } from '@/types';
 import cache from '@/utils/cache';
-import { parseDate, parseRelativeDate } from '@/utils/parse-date';
+import { parseDate, parseRelativeDate } from '@/utils/time';
 
 import { formatDescription, getVideoUrl, renderYoutube } from '../utils';
 import { getSrtAttachmentBatch } from './subtitles';
@@ -140,7 +141,7 @@ export const getStreamsByChannelId = async ({ channelId, embed }: { channelId: s
 export const getDataByPlaylistId = async ({ playlistId, embed }: { playlistId: string; embed: boolean; isJsonFeed: boolean }): Promise<Data> => {
     const innertube = await getInnertube();
     const playlist = await innertube.getPlaylist(playlistId);
-    const videos = await playlist.videos;
+    const videos = playlist.videos;
     return {
         title: `${playlist.info.title || playlistId} by ${playlist.info.author.name} - YouTube`,
         link: `https://www.youtube.com/playlist?list=${playlistId}`,

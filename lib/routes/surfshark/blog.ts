@@ -1,16 +1,19 @@
-import { type Cheerio, type CheerioAPI, load } from 'cheerio';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
 import type { Element } from 'domhandler';
 import type { Context } from 'hono';
 import pMap from 'p-map';
 
-import { type Data, type DataItem, type Language, type Route, ViewType } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
+import { isOnSite } from '@/utils/valid-host';
 
 import { renderDescription } from './templates/description';
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { category } = ctx.req.param();
     const requestedLimit = Number(ctx.req.query('limit'));
     const limit = Number.isFinite(requestedLimit) && requestedLimit >= 1 ? Math.floor(requestedLimit) : 30;
@@ -81,7 +84,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 title,
                 description,
                 pubDate: pubDateStr ? parseDate(pubDateStr) : undefined,
-                link: linkUrl,
+                link: linkUrl ? new URL(linkUrl, targetUrl).href : undefined,
                 category: categories,
                 author: authors,
                 content: {
@@ -94,12 +97,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
             };
 
             return processedItem;
-        });
+        })
+        .filter((item, index, items) => items.findIndex((candidate) => candidate.link === item.link) === index);
 
     items = await pMap(
         items,
         async (item) => {
-            if (!item.link) {
+            // only follow links on the site itself
+            if (!isOnSite(item.link, domain)) {
                 return item;
             }
 

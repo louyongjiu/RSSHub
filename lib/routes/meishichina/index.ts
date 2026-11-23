@@ -4,12 +4,12 @@ import pMap from 'p-map';
 import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
+import { parseDate } from '@/utils/time';
 
 const isChinese = (text: string): boolean => /^[\u{4E00}-\u{9FA5}]+$/u.test(text);
 
-export const handler = async (ctx) => {
+const handler = async (ctx) => {
     const DEFAULT_CATEGORY = '最新推荐';
     const DEFAULT_CLASSID = 0;
     const DEFAULT_ORDERBY = 'hot';

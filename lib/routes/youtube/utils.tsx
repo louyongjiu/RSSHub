@@ -5,7 +5,7 @@ import { renderToString } from 'hono/jsx/dom/server';
 
 import { config } from '@/config';
 
-import { exec, youtubeOAuth2Client } from './api/google';
+import { exec, youtubeOAuth2Client } from './api/google-client';
 
 export const getPlaylistItems = (id, part, cache) =>
     cache.tryGet(
@@ -65,7 +65,7 @@ export const getVideos = (id, part, cache) =>
     });
 export const getThumbnail = (thumbnails) => thumbnails.maxres || thumbnails.standard || thumbnails.high || thumbnails.medium || thumbnails.default;
 export const formatDescription = (description) => (isNullish(description) ? undefined : escapeText(description).replaceAll(/\r\n|\r|\n/g, '<br>'));
-export const renderYoutube = (embed, videoId, img, description) =>
+export const renderYoutube = (embed, videoId, img?, description?) =>
     renderToString(
         <>
             {embed ? (

@@ -5,11 +5,10 @@ import iconv from 'iconv-lite';
 
 import type { Language, Route } from '@/types';
 import got from '@/utils/got';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
-import timezone from '@/utils/timezone';
+import { parseDate } from '@/utils/time';
 
-export const handler = async (ctx) => {
+const handler = async (ctx) => {
     const { id = 'RPJQWQYZ' } = ctx.req.param();
     const limit = getRouteLimit(ctx, 30);
 
@@ -60,7 +59,7 @@ export const handler = async (ctx) => {
             return {
                 title: itemTitle,
                 description,
-                pubDate: date ? timezone(parseDate(date, 'YYYY-MM-DD'), 8) : undefined,
+                pubDate: date ? parseDate(date, 'YYYY-MM-DD', 8) : undefined,
                 link: currentUrl,
                 category: title ? [title] : undefined,
                 author,

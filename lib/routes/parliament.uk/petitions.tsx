@@ -6,9 +6,9 @@ import { renderToString } from 'hono/jsx/dom/server';
 import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate } from '@/utils/time';
 
-export const handler = async (ctx: Context): Promise<Data> => {
+const handler = async (ctx: Context): Promise<Data> => {
     const { state = 'all' } = ctx.req.param();
     const requestedLimit = Number(ctx.req.query('limit'));
     const limit = Number.isSafeInteger(requestedLimit) && requestedLimit > 0 ? requestedLimit : 50;
@@ -72,8 +72,8 @@ export const handler = async (ctx: Context): Promise<Data> => {
     const feedImage = $('meta[property="og:image"]').prop('content');
 
     return {
-        title: $('h1.page-title').text(),
-        description: $('meta[property="twitter:description"]').prop('content'),
+        title: $('h1').first().text() || $('title').text(),
+        description: $('meta[name="twitter:description"]').prop('content'),
         link: targetUrl,
         item: items,
         image: feedImage,

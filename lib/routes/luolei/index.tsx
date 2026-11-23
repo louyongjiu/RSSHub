@@ -1,10 +1,10 @@
 import type { Route } from '@/types';
 import got from '@/utils/got';
-import { parseDate } from '@/utils/parse-date';
 import { getRouteLimit } from '@/utils/route-limit';
 import rssParser from '@/utils/rss-parser';
+import { parseDate } from '@/utils/time';
 
-export const handler = async (ctx) => {
+const handler = async (ctx) => {
     const rootUrl = 'https://luolei.org';
     const { data: response } = await got(`${rootUrl}/rss.xml`);
     const feed = await rssParser.parseString(response);
